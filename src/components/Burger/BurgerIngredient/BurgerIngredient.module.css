@@ -110,3 +110,12 @@
   background: linear-gradient(#bf3813, #c45e38);
   margin: 2% auto;
 }
+
+.Tomato {
+  width: 80%;
+  height: 3%;
+  background: linear-gradient(rgb(177, 22, 22), #c43838);
+  background-repeat: space;
+  background-size: 47% 100%;
+  margin: 2% auto;
+}
