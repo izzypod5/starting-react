@@ -17,4 +17,5 @@ const modal = (props) => (
   </Fragment>
 );
 
+// triggers on any component props update
 export default React.memo(modal);
