@@ -1,4 +1,3 @@
-import order from '../../components/Order/Order';
 import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
 
@@ -23,13 +22,12 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
   return (dispatch) => {
     dispatch(purchaseBurgerStart());
     axios
-      .post('/orders.json', orderData)
+      .post('/orders.json?auth=' + token, orderData)
       .then((response) => {
-        console.log(response.data);
         dispatch(purchaseBurgerSuccess(response.data.name, orderData));
       })
       .catch((error) => {
@@ -64,11 +62,13 @@ export const fetchOrdersStart = () => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
+    const queryParams =
+      '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
     axios
-      .get('/orders.json')
+      .get('/orders.json' + queryParams)
       .then((res) => {
         const fetchedOrders = [];
         for (let key in res.data) {
