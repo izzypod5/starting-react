@@ -17,5 +17,10 @@ const modal = (props) => (
   </Fragment>
 );
 
-// triggers on any component props update
-export default React.memo(modal);
+// equivalent to shouldComponentUpdate
+export default React.memo(
+  modal,
+  (prevProps, nextProps) =>
+    nextProps.show === prevProps.show &&
+    nextProps.children === prevProps.children
+);
